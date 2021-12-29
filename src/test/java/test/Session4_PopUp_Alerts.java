@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-//https://youtu.be/K2BRKgZgYPs?list=PLhW3qG5bs-L_8bwNnMHdJ1Wq5M0sUmpSH
+//https://www.youtube.com/watch?v=okGp6T3sSVw&list=PLhW3qG5bs-L_8bwNnMHdJ1Wq5M0sUmpSH&index=4
 
 public class Session4_PopUp_Alerts {
 
