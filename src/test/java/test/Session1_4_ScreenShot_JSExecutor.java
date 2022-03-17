@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
+import javax.imageio.ImageIO;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -17,6 +19,9 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 /**
  * https://youtu.be/HjYEjKWSbe8
@@ -43,9 +48,21 @@ public class Session1_4_ScreenShot_JSExecutor {
 		WebElement element = driver.findElement(By.cssSelector(".lnXdpd"));
 		File scrFile1 = element.getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrFile1, new File("./image1.png"));
+		
+		//Full page screen shot using 3rd party library(AShot)
+		driver.get("https://github.com/pazone/ashot");
+		Screenshot ss = new AShot()
+		  .shootingStrategy(ShootingStrategies.viewportPasting(100))
+		  .takeScreenshot(driver);
+		try {
+			ImageIO.write(ss.getImage(), "PNG", new File("./Ashotimage.png"));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 
 		// - 12. JavaScript
-
+		driver.get("https://google.com");
+		
 		//Create JavascriptExecutor interface object by Type casting
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 
