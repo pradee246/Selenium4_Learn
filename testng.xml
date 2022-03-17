@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Suite1" thread-count="2" parallel="tests">
+    <test thread-count="2" verbose="0" name="Regression-Chrome" parallel="classes" >
+        <parameter name="browser" value="CHROME"></parameter>
+        <classes>
+            <class name="testNG_fw.test.FirstTestCase"> </class>
+            <!-- <class name="testNG_fw.test.SecondTestCase"> </class> -->
+        </classes>
+    </test>
+    <test thread-count="2" verbose="0" name="Regression-Edge" parallel="classes" >
+        <parameter name="browser" value="EDGE"></parameter>
+        <classes>
+            <class name="testNG_fw.test.FirstTestCase"> </class>
+            <!-- <class name="testNG_fw.test.SecondTestCase"> </class> -->
+        </classes>
+    </test>
+</suite>
