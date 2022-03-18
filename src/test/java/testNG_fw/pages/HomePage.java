@@ -14,7 +14,8 @@ public class HomePage extends BasePage {
 
  // Fluent interface concept : Which will return the object of next page
     public StorePage navigateToStore(){
-        driver.findElement(link_Menu_Store).click();
+        //driver.findElement(link_Menu_Store).click();
+    	_click(link_Menu_Store, "link_Menu_Store");
         return new StorePage(driver);
     }
 

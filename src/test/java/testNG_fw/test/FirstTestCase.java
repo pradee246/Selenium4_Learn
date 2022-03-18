@@ -2,6 +2,8 @@ package testNG_fw.test;
 
 import testNG_fw.base.BaseTest;
 import testNG_fw.pages.*;
+import testNG_fw.reports.ReportExtents;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
@@ -11,6 +13,8 @@ public class FirstTestCase extends BaseTest {
 
     @Test
     void getCheckOutUsingDirectTransfer() throws InterruptedException, IOException {
+    	
+    	//ReportExtents.createTest("Test CheckOutUsingDirectTransfer");
 
 //        BillingAddress billingAddress = new BillingAddress("demo", "user3", "Street name", "NewCity", "90011", "go@go.com");
 //        billingAddress.

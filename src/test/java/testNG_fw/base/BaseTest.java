@@ -27,14 +27,12 @@ public class BaseTest {
 	// ------ Report ------ 
 	@BeforeSuite
 	public void reportStartup() {
-		System.out.println("Initialize Extent report");
 		ReportExtents.initReports();
 	}
 
 	@AfterSuite
 	public void reportTearDown() throws IOException {
-		System.out.println("Flush Extent report");
 		ReportExtents.flushReport();
-
 	}
+	
 }

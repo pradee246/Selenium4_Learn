@@ -19,16 +19,20 @@ public class StorePage extends BasePage {
     }
 
     public StorePage enterTextinSearch(String txt){
-        waitElementToBeClickable(fld_Search).sendKeys(txt);
+        //waitElementToBeClickable(fld_Search).sendKeys(txt);
         //driver.findElement(fld_Search).sendKeys(txt);
+    	_sendKeys(fld_Search, txt, "fld_Search");
         return this;
     }
-    public void clickSeachBtn(){
-        driver.findElement(btn_Search).click();
+    public StorePage clickSeachBtn(){
+        //driver.findElement(btn_Search).click();
+    	_click(btn_Search, "btn_Search");
+    	return this;
     }
 
     public String getSearchTitle(){
-        return waitElementToBeClickable(txt_SearchTitle).getText(); //driver.findElement(txt_SearchTitle).getText();
+        //return waitElementToBeClickable(txt_SearchTitle).getText(); //driver.findElement(txt_SearchTitle).getText();
+    	return _getText(txt_SearchTitle, "");
     }
 
     private By getAddToCartBtmElement(String productName){
@@ -36,13 +40,14 @@ public class StorePage extends BasePage {
     }
 
     public StorePage clickAddToCartBtn(String productName){
-        driver.findElement(getAddToCartBtmElement(productName)).click();
+        //driver.findElement(getAddToCartBtmElement(productName)).click();
+    	_click(getAddToCartBtmElement(productName), "Add to Cart");
         return this;
     }
 
     public CartPage clickViewCart(){
-        waitElementToBeClickable(btn_ViewCart).click();
-        //driver.findElement(btn_ViewCart).click();
+        //waitElementToBeClickable(btn_ViewCart).click();
+        _click(btn_ViewCart, "");
         return new CartPage(driver);
     }
 

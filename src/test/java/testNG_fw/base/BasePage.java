@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import testNG_fw.reports.ExtentLogger;
+
 import java.time.Duration;
 
 public class BasePage {
@@ -23,20 +26,37 @@ public class BasePage {
         wait = new WebDriverWait(this.driver, Duration.ofSeconds(15));
     }
 
-    public void load(String sEndPoint){
+    protected void load(String sEndPoint){
         driver.get(sBaseURL+sEndPoint);
+        ExtentLogger.pass("Navigated to: "+sBaseURL+sEndPoint);
     }
 
-    public WebDriverWait getWebDriverWait(long l){
+    protected WebDriverWait getWebDriverWait(long l){
         return new WebDriverWait(driver, Duration.ofSeconds(l));
     }
 
-    public WebElement waitVisibilityOfElement(By by){
+    protected WebElement waitVisibilityOfElement(By by){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    public WebElement waitElementToBeClickable(By by){
+    protected WebElement waitElementToBeClickable(By by){
         return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
+    // Actions 
+    protected void _sendKeys(By by, String value, String elementName) {
+    	waitVisibilityOfElement(by).sendKeys(value);
+    	ExtentLogger.pass(value+ " is entered in the element: "+elementName+" (" + by.toString() +")");
+    }
+    
+    protected void _click(By by, String elementName) {
+    	waitElementToBeClickable(by).click();
+    	ExtentLogger.pass("Clicked the element: "+elementName+" (" + by.toString() +")");
+    }
+    
+    protected String _getText(By by, String elementName) {
+    	String val = waitVisibilityOfElement(by).getText();
+    	ExtentLogger.pass(val+ " is returned from the element: "+elementName+" (" + by.toString() +")");
+    	return val;
+    }
 }

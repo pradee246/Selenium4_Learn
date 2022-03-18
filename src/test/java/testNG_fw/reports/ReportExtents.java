@@ -18,6 +18,7 @@ public class ReportExtents {
 	//private static ExtentTest test;
 	
 	public static void initReports() {
+		System.out.println("Initialize Extent report");
 		if(Objects.isNull(extent)) {
 			extent = new ExtentReports();
 			ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html");
@@ -30,6 +31,7 @@ public class ReportExtents {
 	}
 	
 	public static void flushReport() throws IOException {
+		System.out.println("Flush Extent report");
 		if(!Objects.isNull(extent)) {
 			extent.flush();
 			// Optional : If reports needs to be opened automatically

@@ -1,5 +1,7 @@
 package testNG_fw.reports;
 
+import java.util.Objects;
+
 import com.aventstack.extentreports.ExtentTest;
 
 public class ExtentManager {
@@ -8,15 +10,22 @@ public class ExtentManager {
 	
 	private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 	
-	public static void setExtentTest(ExtentTest test) {
+	static void setExtentTest(ExtentTest test) {
 		extentTest.set(test);
 	}
 
-	public static ExtentTest getExtentTest() {
-		return extentTest.get();
+	static ExtentTest getExtentTest() {
+		ExtentTest test = extentTest.get();
+		if(Objects.isNull(test)) {
+			ReportExtents.createTest("Debuging Test");
+			return extentTest.get();
+		}else {
+			return test;
+		}
+		 
 	}
 	
-	public static void unload() {
+	static void unload() {
 		extentTest.remove();
 	}
 
