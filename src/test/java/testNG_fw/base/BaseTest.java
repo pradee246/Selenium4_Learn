@@ -25,14 +25,14 @@ public class BaseTest {
 	}
 
 	// ------ Report ------ 
-	@BeforeSuite
-	public void reportStartup() {
-		ReportExtents.initReports();
-	}
-
-	@AfterSuite
-	public void reportTearDown() throws IOException {
-		ReportExtents.flushReport();
-	}
+//	@BeforeSuite
+//	public void reportStartup() {
+//		ReportExtents.initReports();
+//	}
+//
+//	@AfterSuite
+//	public void reportTearDown() throws IOException {
+//		ReportExtents.flushReport();
+//	}
 	
 }

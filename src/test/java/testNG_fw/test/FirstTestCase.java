@@ -2,12 +2,13 @@ package testNG_fw.test;
 
 import testNG_fw.base.BaseTest;
 import testNG_fw.pages.*;
-import testNG_fw.reports.ReportExtents;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
+@Listeners(testNG_fw.listener.Listener.class)	
 
 public class FirstTestCase extends BaseTest {
 
@@ -53,6 +54,6 @@ public class FirstTestCase extends BaseTest {
     @Test
     void secondTest(){
         new HomePage(driver).load().navigateToStore();
-        System.out.println("Executing 2nd test");
+        System.out.println("---------------- Executing 2nd test ------------------");
     }
 }

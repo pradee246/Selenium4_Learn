@@ -21,7 +21,6 @@ public class ExtentReportTest extends BaseTest{
 		ExtentLogger.pass("This is pass step1");
 		ExtentLogger.fail("This is fail step1");
 		ExtentLogger.skip("This is skip step1");
-		
 
 	}
 	
@@ -34,7 +33,6 @@ public class ExtentReportTest extends BaseTest{
 		ExtentLogger.pass("This is pass step2");
 		ExtentLogger.fail("This is fail step2");
 		ExtentLogger.skip("This is skip step2");
-		
 
 	}
 	

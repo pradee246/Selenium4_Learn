@@ -42,12 +42,12 @@ public class ReportExtents {
 
 	public static void createTest(String tesCasetName) {
 		ExtentTest test = extent.createTest(tesCasetName);
+		System.out.println("<<<<<<<<<<<< STARTED TC: " +tesCasetName + " >>>>>>>>>>>>>>>");
 		ExtentManager.setExtentTest(test);
 	}
 	
 	public static void createTest(String tesCasetName, String Author, String Category, String Device) {
 		ExtentTest test = extent.createTest(tesCasetName).assignAuthor(Author).assignCategory(Category).assignDevice(Device);
 		ExtentManager.setExtentTest(test);
-		
 	}
 }

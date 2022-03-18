@@ -6,7 +6,6 @@ public class ExtentLogger {
 	
 	public static void pass(String msg) {
 		ExtentManager.getExtentTest().pass(msg);
-		System.out.println(msg);
 	}
 	
 	public static void fail(String msg) {

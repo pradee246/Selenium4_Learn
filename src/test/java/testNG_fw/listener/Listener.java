@@ -35,6 +35,7 @@ public class Listener implements ITestListener, ISuiteListener{
 	
 	@Override
 	public void onTestStart(ITestResult result) {
+		System.out.println("----------------------------------------");
 		ReportExtents.createTest(result.getMethod().getMethodName());
 	}
 
@@ -56,6 +57,7 @@ public class Listener implements ITestListener, ISuiteListener{
 	@Override
 	public void onTestFailure(ITestResult result) {
 		ExtentLogger.fail(result.getMethod().getMethodName()+ " is FAIL");
+		result.getThrowable().printStackTrace();
 	}
 
 	/**
