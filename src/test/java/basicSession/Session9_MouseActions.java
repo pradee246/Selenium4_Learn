@@ -1,4 +1,4 @@
-package test;
+package basicSession;
 
 import java.io.IOException;
 import java.time.Duration;

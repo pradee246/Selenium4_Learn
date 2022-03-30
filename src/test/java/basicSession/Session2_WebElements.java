@@ -1,4 +1,4 @@
-package test;
+package basicSession;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -52,9 +52,9 @@ public class Session2_WebElements {
 
 		//ID : use ID if available, unique and consistent
 
-		//CSS Selectors : If unique ID’s not available
+		//CSS Selectors : If unique IDï¿½s not available
 
-		//XPath : If CSS Selectors can’t be used
+		//XPath : If CSS Selectors canï¿½t be used
 
 		//keep your locators as compact and readable as possible
 		//traversing the DOM structure is an expensive operation,

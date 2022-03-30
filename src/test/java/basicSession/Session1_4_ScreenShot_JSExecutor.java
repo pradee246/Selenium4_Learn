@@ -1,4 +1,4 @@
-package test;
+package basicSession;
 
 import java.io.File;
 import java.io.IOException;

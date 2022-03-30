@@ -1,4 +1,4 @@
-package test;
+package basicSession;
 
 import java.time.Duration;
 

@@ -1,4 +1,4 @@
-package test;
+package basicSession;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -84,7 +84,7 @@ public class Session3_Waits {
 		Differences
 
 		Polling frequency - can change as per need
-		Ignore Exception - in case element is not found, can ignore any exception like ‘NoSuchElement’ exception etc.
+		Ignore Exception - in case element is not found, can ignore any exception like ï¿½NoSuchElementï¿½ exception etc.
 
 		*/
 		Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
