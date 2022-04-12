@@ -2,6 +2,7 @@ package testNG_fw.test;
 
 import testNG_fw.base.BaseTest;
 import testNG_fw.pages.*;
+import testNG_fw.reports.ExtentLogger;
 
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -53,7 +54,15 @@ public class FirstTestCase extends BaseTest {
 
     @Test
     void secondTest(){
-        new HomePage(driver).load().navigateToStore();
+    	StorePage storePage = new HomePage(driver).load().navigateToStore();
+
+        ExtentLogger.fail("This is fail step1");
+        storePage.
+                enterTextinSearch("Blue").
+                clickSeachBtn(); // Above 2 lines are replaced by returning storePage object
+        storePage.getSearchTitle();
+        
         System.out.println("---------------- Executing 2nd test ------------------");
+        ExtentLogger.fail("This is fail step2");
     }
 }

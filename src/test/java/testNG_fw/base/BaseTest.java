@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+
+import testNG_fw.factory.Driver;
 import testNG_fw.factory.DriverManager;
 import testNG_fw.reports.ReportExtents;
 
@@ -15,7 +17,8 @@ public class BaseTest {
 	//    @BeforeMethod
 	@BeforeClass
 	public void startDriver(@Optional("chrome") String browser){
-		driver = new DriverManager().intializeDriver(browser);
+		Driver.intializeDriver(browser);
+		driver = DriverManager.getDriver();
 	}
 
 	//    @AfterMethod
@@ -34,5 +37,6 @@ public class BaseTest {
 //	public void reportTearDown() throws IOException {
 //		ReportExtents.flushReport();
 //	}
+	
 	
 }

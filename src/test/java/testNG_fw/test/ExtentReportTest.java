@@ -9,7 +9,10 @@ import testNG_fw.reports.ReportExtents;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+@Listeners(testNG_fw.listener.Listener.class)	
 
 public class ExtentReportTest extends BaseTest{
 
@@ -17,7 +20,7 @@ public class ExtentReportTest extends BaseTest{
 	void extentReporTest1() throws IOException{
 		ReportExtents.createTest("ExtentReportTest Sample1");
 		
-		
+				
 		ExtentLogger.pass("This is pass step1");
 		ExtentLogger.fail("This is fail step1");
 		ExtentLogger.skip("This is skip step1");
