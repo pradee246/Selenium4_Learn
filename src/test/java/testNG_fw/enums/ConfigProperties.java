@@ -1,0 +1,11 @@
+package testNG_fw.enums;
+
+public enum ConfigProperties {
+
+	URL,
+	OVERRIDEREPORTS,
+	PASSEDSTEPSSCREENSHOT,
+	FAILEDSTEPSSCREENSHOT,
+	RETRYFAILEDTESTS,
+	BROWSER
+}

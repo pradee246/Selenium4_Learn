@@ -4,6 +4,7 @@ import testNG_fw.base.BaseTest;
 import testNG_fw.pages.*;
 import testNG_fw.reports.ExtentLogger;
 
+import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -47,9 +48,12 @@ public class FirstTestCase extends BaseTest {
                 setBillingDetails("demo", "user3", "Street name", "NewCity", "90011", "go@go.com").
                 clickPlaceOrder();
         //Thread.sleep(5000);
-
+   
         Assert.assertEquals(checkoutPage.getConfirmationTxt(), "Thank you. Your order has been received.");
-
+        Assertions.assertThat(checkoutPage.getConfirmationTxt())
+        	.startsWith("Thank you.")
+        	.endsWith("Your order has been received.")
+        	.isMixedCase();
     }
 
     @Test
@@ -63,6 +67,6 @@ public class FirstTestCase extends BaseTest {
         storePage.getSearchTitle();
         
         System.out.println("---------------- Executing 2nd test ------------------");
-        ExtentLogger.fail("This is fail step2");
+        ExtentLogger.fail("This is fail step2", true);
     }
 }

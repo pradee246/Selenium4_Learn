@@ -8,6 +8,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import testNG_fw.reports.ExtentLogger;
+import testNG_fw.reports.ExtentManager;
 import testNG_fw.reports.ReportExtents;
 
 public class Listener implements ITestListener, ISuiteListener{
@@ -57,7 +58,9 @@ public class Listener implements ITestListener, ISuiteListener{
 	@Override
 	public void onTestFailure(ITestResult result) {
 		ExtentLogger.fail(result.getMethod().getMethodName()+ " is FAIL");
-		result.getThrowable().printStackTrace();
+		ExtentLogger.fail(result.getThrowable().getLocalizedMessage());
+		ExtentManager.getExtentTest().fail(result.getThrowable());
+		//result.getThrowable().printStackTrace();
 	}
 
 	/**

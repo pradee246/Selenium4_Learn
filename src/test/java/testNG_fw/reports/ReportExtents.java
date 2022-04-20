@@ -9,6 +9,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 public class ReportExtents {
 	
@@ -21,7 +22,9 @@ public class ReportExtents {
 		System.out.println("Initialize Extent report");
 		if(Objects.isNull(extent)) {
 			extent = new ExtentReports();
-			ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html");
+//			ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html"); // Default menu tab view will be applied.
+			ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html").
+					viewConfigurer().viewOrder().as(new ViewName[] {ViewName.DASHBOARD, ViewName.TEST, ViewName.CATEGORY}).apply();
 			extent.attachReporter(spark);
 			
 			spark.config().setTheme(Theme.DARK);
