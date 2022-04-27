@@ -27,13 +27,10 @@ public class Listener implements ITestListener, ISuiteListener{
 	 */
 	@Override
 	public void onFinish(ISuite suite) {
-		try {
-			ReportExtents.flushReport();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		ReportExtents.flushReport();
+
 	}
-	
+
 	@Override
 	public void onTestStart(ITestResult result) {
 		System.out.println("----------------------------------------");
@@ -57,8 +54,8 @@ public class Listener implements ITestListener, ISuiteListener{
 	 */
 	@Override
 	public void onTestFailure(ITestResult result) {
-		ExtentLogger.fail(result.getMethod().getMethodName()+ " is FAIL");
-		ExtentLogger.fail(result.getThrowable().getLocalizedMessage());
+		ExtentLogger.fail(result.getMethod().getMethodName()+ " is FAIL", true);
+		//ExtentLogger.fail(result.getThrowable().getLocalizedMessage());
 		ExtentManager.getExtentTest().fail(result.getThrowable());
 		//result.getThrowable().printStackTrace();
 	}

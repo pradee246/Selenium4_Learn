@@ -1,8 +1,8 @@
 package testNG_fw.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import testNG_fw.base.BasePage;
+import testNG_fw.enums.WaitStrategy;
 
 public class StorePage extends BasePage {
 
@@ -14,25 +14,23 @@ public class StorePage extends BasePage {
     private By btn_ViewCart = By.cssSelector("a[title='View cart']");
 
 
-    public StorePage(WebDriver driver) {
-        super(driver);
-    }
+//    public StorePage(WebDriver driver) {
+//        super(driver);
+//    }
 
     public StorePage enterTextinSearch(String txt){
-        //waitElementToBeClickable(fld_Search).sendKeys(txt);
-        //driver.findElement(fld_Search).sendKeys(txt);
-    	_sendKeys(fld_Search, txt, "fld_Search");
+        sendKeys(fld_Search, txt, WaitStrategy.VISIBLE, "fld_Search");
         return this;
     }
     public StorePage clickSeachBtn(){
         //driver.findElement(btn_Search).click();
-    	_click(btn_Search, "btn_Search");
+    	click(btn_Search, WaitStrategy.CLICKABLE, "btn_Search");
     	return this;
     }
 
     public String getSearchTitle(){
         //return waitElementToBeClickable(txt_SearchTitle).getText(); //driver.findElement(txt_SearchTitle).getText();
-    	return _getText(txt_SearchTitle, "");
+    	return getText(txt_SearchTitle, WaitStrategy.VISIBLE, "");
     }
 
     private By getAddToCartBtmElement(String productName){
@@ -41,14 +39,14 @@ public class StorePage extends BasePage {
 
     public StorePage clickAddToCartBtn(String productName){
         //driver.findElement(getAddToCartBtmElement(productName)).click();
-    	_click(getAddToCartBtmElement(productName), "Add to Cart");
+    	click(getAddToCartBtmElement(productName), WaitStrategy.CLICKABLE, "Add to Cart");
         return this;
     }
 
     public CartPage clickViewCart(){
         //waitElementToBeClickable(btn_ViewCart).click();
-        _click(btn_ViewCart, "");
-        return new CartPage(driver);
+        click(btn_ViewCart, WaitStrategy.CLICKABLE, "");
+        return new CartPage();
     }
 
 

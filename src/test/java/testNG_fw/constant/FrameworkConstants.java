@@ -16,7 +16,6 @@ public final class FrameworkConstants {
 	public static final String JSONCONFIG_FILEPATH = RESOURCESEPATH+"/config/config.json";
 	public static final String TESTEXCEL_FILEPATH = RESOURCESEPATH+"/data/TestCases.xlsx";
 	
-	public static final String DATASHEET_RUNMANAGER = "RUNMANAGER";
 	public static final String DATASHEET_DATA = "DATA";
 	
 	private static final String EXTENTSREPORTFOLDERPATH = System.getProperty("user.dir")+"/extent-report/";

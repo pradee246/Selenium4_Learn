@@ -21,11 +21,11 @@ public final class ExcelUtils {
 	private ExcelUtils() {}
 
 	public static List<Map<String, String>> getTestDetails(String sheetName)  {
-		FileInputStream fs = null;
+		//FileInputStream fs = null;
 		Map<String, String> map = null;
 		List<Map<String, String>> list = new ArrayList<>();
-		try {
-			fs = new FileInputStream(new File(FrameworkConstants.TESTEXCEL_FILEPATH));
+		try(FileInputStream fs  = new FileInputStream(new File(FrameworkConstants.TESTEXCEL_FILEPATH))) {
+			//fs = new FileInputStream(new File(FrameworkConstants.TESTEXCEL_FILEPATH));
 			XSSFWorkbook workbook = new XSSFWorkbook(fs);
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 
@@ -56,13 +56,6 @@ public final class ExcelUtils {
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
-		}finally {
-			if(Objects.nonNull(fs))
-				try {
-					fs.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
 		}
 
 		return list;

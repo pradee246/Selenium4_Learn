@@ -19,7 +19,7 @@ public final class DataProviderUtils {
 	public static Object[] getData(Method m) {
 		String testname = m.getName();
 		if(list.isEmpty()) { // to optimize 
-			System.out.println("------- readin data ------");
+			System.out.println("------- reading data ------");
 			list = ExcelUtils.getTestDetails(FrameworkConstants.DATASHEET_DATA);
 		}
 		

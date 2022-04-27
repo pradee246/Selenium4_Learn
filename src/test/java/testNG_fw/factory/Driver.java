@@ -13,7 +13,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public final class Driver {
 	
 
-	public static void intializeDriver(String browser){
+	public static WebDriver intializeDriver(String browser){
         browser = System.getProperty("browser",browser); // picks the default value passed from TestNG.xml, if the value is not passed from MVN CMD
         WebDriver driver;
         switch(browser.toLowerCase()){
@@ -29,7 +29,7 @@ public final class Driver {
                 throw new IllegalStateException("Invalid browser name: "+browser);
         }
         DriverManager.setDriver(driver);
-        //return driver;
+        return DriverManager.getDriver();
     }
 	
 	public static void quitDriver(){

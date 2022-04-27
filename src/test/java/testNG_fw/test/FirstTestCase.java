@@ -28,7 +28,7 @@ public class FirstTestCase extends BaseTest {
 //                setZipCode("90011").
 //                setEmail("go@go.com");
 
-        StorePage storePage = new HomePage(driver).load().navigateToStore();
+        StorePage storePage = new HomePage().load().navigateToStore();
 
         //storePage.enterTextinSearch("Blue");
         //storePage.clickSeachBtn();
@@ -58,7 +58,7 @@ public class FirstTestCase extends BaseTest {
 
     @Test
     void secondTest(){
-    	StorePage storePage = new HomePage(driver).load().navigateToStore();
+    	StorePage storePage = new HomePage().load().navigateToStore();
 
         ExtentLogger.fail("This is fail step1");
         storePage.

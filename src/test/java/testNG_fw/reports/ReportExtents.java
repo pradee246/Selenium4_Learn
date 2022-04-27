@@ -11,6 +11,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
 
+import testNG_fw.constant.FrameworkConstants;
+
 public class ReportExtents {
 	
 	private ReportExtents() {}
@@ -22,9 +24,9 @@ public class ReportExtents {
 		System.out.println("Initialize Extent report");
 		if(Objects.isNull(extent)) {
 			extent = new ExtentReports();
-//			ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html"); // Default menu tab view will be applied.
-			ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html").
-					viewConfigurer().viewOrder().as(new ViewName[] {ViewName.DASHBOARD, ViewName.TEST, ViewName.CATEGORY}).apply();
+			ExtentSparkReporter spark = new ExtentSparkReporter(FrameworkConstants.getExtentReportFilePath()); // Default menu tab view will be applied.
+//			ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html").
+//					viewConfigurer().viewOrder().as(new ViewName[] {ViewName.DASHBOARD, ViewName.TEST, ViewName.CATEGORY}).apply();
 			extent.attachReporter(spark);
 			
 			spark.config().setTheme(Theme.DARK);
@@ -33,13 +35,17 @@ public class ReportExtents {
 		}
 	}
 	
-	public static void flushReport() throws IOException {
+	public static void flushReport()  {
 		System.out.println("Flush Extent report");
 		if(!Objects.isNull(extent)) {
 			extent.flush();
-			// Optional : If reports needs to be opened automatically
-			Desktop.getDesktop().browse(new File("target/spark.html").toURI());
 			ExtentManager.unload();
+			// Optional : If reports needs to be opened automatically
+			try {
+				Desktop.getDesktop().browse(new File(FrameworkConstants.getExtentReportFilePath()).toURI());
+			} catch (Exception e) {
+				 throw new RuntimeException("Error in opening the Extent Report: "+FrameworkConstants.getExtentReportFilePath(), e);
+			}
 		}
 	}
 

@@ -34,7 +34,7 @@ public class PropertyUtils {
 	
 	public static String getValue(ConfigProperties key) {
 		// Check if no value is returned || Check if the key is null
-		if(Objects.isNull(key.name().toLowerCase()) || Objects.isNull(key)) {
+		if(Objects.isNull(key) || Objects.isNull(prop.getProperty(key.name().toLowerCase()))) {
 			throw new RuntimeException("Key: '"+key.name().toLowerCase() +"' is not found check in the config.properties file");
 		}
 		return prop.getProperty(key.name().toLowerCase());

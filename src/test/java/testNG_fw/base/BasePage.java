@@ -6,7 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+import testNG_fw.constant.FrameworkConstants;
+import testNG_fw.enums.ConfigProperties;
+import testNG_fw.enums.WaitStrategy;
+import testNG_fw.factory.DriverManager;
 import testNG_fw.reports.ExtentLogger;
+import testNG_fw.utils.PropertyUtils;
 
 import java.time.Duration;
 
@@ -16,47 +22,62 @@ public class BasePage {
     Note : Keep this minimal, avoid added lots of methods
      */
 
-    protected WebDriver driver;
-    private WebDriverWait wait;
+    private String sBaseURL =PropertyUtils.get(ConfigProperties.URL);// "https://askomdch.com";
 
-    private String sBaseURL = "https://askomdch.com";
-
-    public BasePage(WebDriver driver){
-        this.driver = driver;
-        wait = new WebDriverWait(this.driver, Duration.ofSeconds(15));
-    }
-
-    protected void load(String sEndPoint){
-        driver.get(sBaseURL+sEndPoint);
-        ExtentLogger.pass("Navigated to: "+sBaseURL+sEndPoint);
-    }
+//    public BasePage(WebDriver driver){
+//        this.driver = driver;
+//        wait = new WebDriverWait(this.driver, Duration.ofSeconds(15));
+//    }
 
     protected WebDriverWait getWebDriverWait(long l){
-        return new WebDriverWait(driver, Duration.ofSeconds(l));
+        return new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(l));
     }
 
-    protected WebElement waitVisibilityOfElement(By by){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-    }
+    public static WebElement performExplicitWait(By by, WaitStrategy waitStrategy) {
+		WebElement e=null;
+		if(waitStrategy == WaitStrategy.CLICKABLE) {
+			e = new WebDriverWait(DriverManager.getDriver(),Duration.ofSeconds(FrameworkConstants.DEFAULT_WEBDRIVERWAIT))
+			.until(ExpectedConditions.elementToBeClickable(by));
+		}else if(waitStrategy == WaitStrategy.VISIBLE) {
+			e = new WebDriverWait(DriverManager.getDriver(),Duration.ofSeconds(FrameworkConstants.DEFAULT_WEBDRIVERWAIT))
+			.until(ExpectedConditions.visibilityOfElementLocated(by));
+		}else if(waitStrategy == WaitStrategy.PRESENCE) {
+			e = new WebDriverWait(DriverManager.getDriver(),Duration.ofSeconds(FrameworkConstants.DEFAULT_WEBDRIVERWAIT))
+			.until(ExpectedConditions.presenceOfElementLocated(by));
+		}else if(waitStrategy == WaitStrategy.NONE) {
+			e = DriverManager.getDriver().findElement(by);
+		}
+		return e;
+	}
 
-    protected WebElement waitElementToBeClickable(By by){
-        return wait.until(ExpectedConditions.elementToBeClickable(by));
-    }
-
-    // Actions 
-    protected void _sendKeys(By by, String value, String elementName) {
-    	waitVisibilityOfElement(by).sendKeys(value);
-    	ExtentLogger.pass(value+ " is entered in the element: "+elementName+" (" + by.toString() +")");
+    // ------------------ Actions ---------------------
+    protected void load(String sEndPoint){
+    	DriverManager.getDriver().get(sBaseURL+sEndPoint);
+        ExtentLogger.info("Navigated to: "+sBaseURL+sEndPoint);
     }
     
-    protected void _click(By by, String elementName) {
-    	waitElementToBeClickable(by).click();
-    	ExtentLogger.pass("Clicked the element: "+elementName+" (" + by.toString() +")");
+    protected void sendKeys(By by, String value, WaitStrategy waitStrategy, String elementName) {
+    	WebElement e = performExplicitWait(by, waitStrategy);
+		e.sendKeys(value);
+    	ExtentLogger.info(value+ " is entered in the element: "+elementName+" (" + by.toString() +")");
     }
     
-    protected String _getText(By by, String elementName) {
-    	String val = waitVisibilityOfElement(by).getText();
-    	ExtentLogger.pass(val+ " is returned from the element: "+elementName+" (" + by.toString() +")");
+    protected void click(By by, WaitStrategy waitStrategy, String elementName) {
+    	WebElement e = performExplicitWait(by, waitStrategy);
+		e.click();
+		ExtentLogger.info("Clicked the element: "+elementName+" (" + by.toString() +")");
+    }
+    
+    protected String getText(By by, WaitStrategy waitStrategy, String elementName) {
+    	WebElement e = performExplicitWait(by, waitStrategy);
+    	String val = e.getText();
+    	ExtentLogger.info(val+ " is returned from the element: "+elementName+" (" + by.toString() +")");
     	return val;
     }
+    
+    public String getPageTitle() {
+    	String val = DriverManager.getDriver().getTitle();
+    	ExtentLogger.info("Title is returned: "+ val);
+		return val;
+	}
 }

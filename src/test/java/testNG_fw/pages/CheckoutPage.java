@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import testNG_fw.base.BasePage;
+import testNG_fw.enums.WaitStrategy;
 //import org.selenium.pom.objects.BillingAddress;
 
 public class CheckoutPage extends BasePage {
@@ -17,33 +18,34 @@ public class CheckoutPage extends BasePage {
     private By btn_placeOrd = By.cssSelector("#place_order");
     private By title_Confimation = By.cssSelector(".woocommerce-notice");
 
-    public CheckoutPage(WebDriver driver) {
-        super(driver);
-    }
+//    public CheckoutPage(WebDriver driver) {
+//        super(driver);
+//    }
 
     public CheckoutPage enterFrstName(String txt){
-        driver.findElement(frstName).sendKeys(txt);
+    	sendKeys(frstName, txt, WaitStrategy.VISIBLE, "");
+        //driver.findElement(frstName).sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterLastName(String txt){
-        driver.findElement(lastName).sendKeys(txt);
+    	sendKeys(lastName, txt, WaitStrategy.VISIBLE, "");
         return this;
     }
     public CheckoutPage enterStreetAddr(String txt){
-        driver.findElement(streetName).sendKeys(txt);
+    	sendKeys(streetName, txt, WaitStrategy.VISIBLE, "");
         return this;
     }
     public CheckoutPage enterCity(String txt){
-        driver.findElement(fld_townName).sendKeys(txt);
+    	sendKeys(fld_townName, txt, WaitStrategy.VISIBLE, "");
         return this;
     }
     public CheckoutPage enterZip(String txt){
-        driver.findElement(fld_zipCode).sendKeys(txt);
+    	sendKeys(fld_zipCode, txt, WaitStrategy.VISIBLE, "");
         return this;
     }
     public CheckoutPage enterEmail(String txt){
-        driver.findElement(fld_email).sendKeys(txt);
+    	sendKeys(fld_email, txt, WaitStrategy.VISIBLE, "");
         return this;
     }
 
@@ -57,12 +59,11 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage clickPlaceOrder(){
-        driver.findElement(btn_placeOrd).click();
+    	click(btn_placeOrd, WaitStrategy.CLICKABLE, "btn_placeOrd");
         return this;
     }
 
     public String getConfirmationTxt(){
-        getWebDriverWait(10).until(ExpectedConditions.visibilityOfElementLocated(title_Confimation));
-        return driver.findElement(title_Confimation).getText();
+    	return getText(title_Confimation, WaitStrategy.VISIBLE, "title_Confimation");
     }
 }

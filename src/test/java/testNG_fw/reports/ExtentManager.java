@@ -11,7 +11,7 @@ public class ExtentManager {
 	private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
 	static void setExtentTest(ExtentTest test) {
-		extentTest.set(test);
+		if(Objects.nonNull(test)) extentTest.set(test);
 	}
 
 	public static ExtentTest getExtentTest() {

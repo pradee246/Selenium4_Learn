@@ -11,32 +11,32 @@ import testNG_fw.reports.ReportExtents;
 
 public class BaseTest {
 
-	protected WebDriver driver;
+	//protected WebDriver driver;
 
 	@Parameters("browser")
-	//    @BeforeMethod
-	@BeforeClass
+	@BeforeMethod
+	//@BeforeClass
 	public void startDriver(@Optional("chrome") String browser){
 		Driver.intializeDriver(browser);
-		driver = DriverManager.getDriver();
+		//driver = DriverManager.getDriver();
 	}
 
-	//    @AfterMethod
-	@AfterClass
+	@AfterMethod
+	//@AfterClass
 	public void quitDriver(){
-		driver.quit();
+		Driver.quitDriver();
 	}
 
 	// ------ Report ------ 
-//	@BeforeSuite
-//	public void reportStartup() {
-//		ReportExtents.initReports();
-//	}
-//
-//	@AfterSuite
-//	public void reportTearDown() throws IOException {
-//		ReportExtents.flushReport();
-//	}
-	
-	
+	//	@BeforeSuite
+	//	public void reportStartup() {
+	//		ReportExtents.initReports();
+	//	}
+	//
+	//	@AfterSuite
+	//	public void reportTearDown() throws IOException {
+	//		ReportExtents.flushReport();
+	//	}
+
+
 }
