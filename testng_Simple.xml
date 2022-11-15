@@ -6,7 +6,7 @@
 	</listeners>
 	<test thread-count="2" verbose="0" name="Regression-Chrome" parallel="methods">
 		<classes>
-			<class name="testNG_fw.test.ExtentReportTest">
+			<class name="testNG_fw.test.OrangeHRMTests.java ">
 			</class>
 		</classes>
 	</test>
