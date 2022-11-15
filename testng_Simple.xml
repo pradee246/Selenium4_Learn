@@ -4,10 +4,9 @@
 	<listeners>
 		<listener class-name="testNG_fw.listener.Listener"></listener>
 	</listeners>
-	<test thread-count="2" verbose="0" name="Regression-Chrome" parallel="methods">
+	<test thread-count="2" verbose="0" name="Regression-Chrome">
 		<classes>
-			<class name="testNG_fw.test.OrangeHRMTests.java ">
-			</class>
+			<class name="testNG_fw.test.OrangeHRMTests"/>
 		</classes>
 	</test>
 	<!-- Default test -->
